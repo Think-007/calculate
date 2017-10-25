@@ -1,0 +1,27 @@
+2017-10-25 23:16:44.584  INFO 12696 --- [main] com.thinker.cal.CalculateApplication     : Starting CalculateApplication on DESKTOP-4V8P2LO with PID 12696 (G:\IDEA_Files\IDEA_WORKSPACE_U\workspace1\calculate\target\classes started by LPF in G:\IDEA_Files\IDEA_WORKSPACE_U\workspace1\calculate)
+2017-10-25 23:16:44.588  INFO 12696 --- [main] com.thinker.cal.CalculateApplication     : The following profiles are active: dev
+2017-10-25 23:16:44.685  INFO 12696 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@448ff1a8: startup date [Wed Oct 25 23:16:44 CST 2017]; root of context hierarchy
+2017-10-25 23:16:45.559  INFO 12696 --- [main] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from class path resource [hessian/hessian-client.xml]
+2017-10-25 23:16:45.876  INFO 12696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2017-10-25 23:16:46.279  INFO 12696 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'idCreatorFacade' of type [org.springframework.remoting.caucho.HessianProxyFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-10-25 23:16:47.260  INFO 12696 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9090 (http)
+2017-10-25 23:16:47.282  INFO 12696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-10-25 23:16:47.283  INFO 12696 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-10-25 23:16:47.433  INFO 12696 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-10-25 23:16:47.437  INFO 12696 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2757 ms
+2017-10-25 23:16:47.647  INFO 12696 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-10-25 23:16:47.654  INFO 12696 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-10-25 23:16:47.655  INFO 12696 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-10-25 23:16:47.656  INFO 12696 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-10-25 23:16:47.656  INFO 12696 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-10-25 23:16:48.166  INFO 12696 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@448ff1a8: startup date [Wed Oct 25 23:16:44 CST 2017]; root of context hierarchy
+2017-10-25 23:16:48.273  INFO 12696 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-10-25 23:16:48.275  INFO 12696 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-10-25 23:16:48.305  INFO 12696 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-10-25 23:16:48.321  INFO 12696 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-25 23:16:48.322  INFO 12696 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-25 23:16:48.371  INFO 12696 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-10-25 23:16:48.418  INFO 12696 --- [main] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2017-10-25 23:16:48.859  INFO 12696 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-10-25 23:16:48.970  INFO 12696 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9090 (http)
+2017-10-25 23:16:48.981  INFO 12696 --- [main] com.thinker.cal.CalculateApplication     : Started CalculateApplication in 4.848 seconds (JVM running for 5.288)
