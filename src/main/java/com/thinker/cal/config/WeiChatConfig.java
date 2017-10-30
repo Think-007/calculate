@@ -9,6 +9,7 @@
 
 package com.thinker.cal.config;
 
+
 /**
  * 
  * 类简要描述
@@ -20,11 +21,10 @@ package com.thinker.cal.config;
  * @author LPF
  * 
  */
-
 public class WeiChatConfig {
 
-	public static final String APP_ID = "xx";
-	public static final String APP_SECRET = "xx";
+	public static final String APP_ID = "wx66afd557ddb52ff8";// "wx25edffe046b6ddde";
+	public static final String APP_SECRET = "d13a82eff0fa65c40a67c8ea0c6e5477";// "987167a421ee115fa923e2fdf0b4db43";
 	public static final String WECHAT_TOKEN = "xx";// 服务号的Token令牌
 	// 授权链接
 	public static final String OAUTH_AUTHORIZE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize";

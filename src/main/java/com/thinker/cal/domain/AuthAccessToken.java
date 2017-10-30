@@ -9,6 +9,8 @@
 
 package com.thinker.cal.domain;
 
+import java.io.Serializable;
+
 /**
  * 
  * 获取鉴权token
@@ -21,7 +23,11 @@ package com.thinker.cal.domain;
  * 
  */
 
-public class AuthAccessToken {
+public class AuthAccessToken implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 范围授权token
 	private String access_token;
 	// 过时时间
@@ -81,5 +87,13 @@ public class AuthAccessToken {
 
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthAccessToken [access_token=" + access_token
+				+ ", expires_in=" + expires_in + ", refresh_token="
+				+ refresh_token + ", openid=" + openid + ", scope=" + scope
+				+ ", unionid=" + unionid + "]";
 	}
 }

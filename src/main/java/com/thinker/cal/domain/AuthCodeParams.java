@@ -45,7 +45,8 @@ public class AuthCodeParams extends AbstractParams implements Serializable {
 		super();
 	}
 
-	public AuthCodeParams(String appid, String redirect_uri, String response_type, String scope, String state) {
+	public AuthCodeParams(String appid, String redirect_uri,
+			String response_type, String scope, String state) {
 		super();
 		this.appid = appid;
 		this.redirect_uri = redirect_uri;
@@ -62,7 +63,9 @@ public class AuthCodeParams extends AbstractParams implements Serializable {
 	public Map<String, String> getParams() throws UnsupportedEncodingException {
 		Map<String, String> params = new TreeMap<String, String>();
 		params.put("appid", this.appid);
-		//params.put("redirect_uri", HttpReqUtil.urlEncode(this.redirect_uri, SystemConfig.CHARACTER_ENCODING));
+		// params.put("redirect_uri", HttpReqUtil.urlEncode(this.redirect_uri,
+		// SystemConfig.CHARACTER_ENCODING));
+		params.put("redirect_uri", this.redirect_uri);
 		params.put("response_type", this.response_type);
 		params.put("scope", this.scope);
 		params.put("state", this.state);
@@ -104,4 +107,12 @@ public class AuthCodeParams extends AbstractParams implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthCodeParams [appid=" + appid + ", redirect_uri="
+				+ redirect_uri + ", response_type=" + response_type
+				+ ", scope=" + scope + ", state=" + state + "]";
+	}
+	
 }

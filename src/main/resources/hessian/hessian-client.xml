@@ -2,15 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd"
-	default-lazy-init="false">
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="idCreatorFacade"
-		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
-		<property name="serviceInterface"
-				  value="com.think.creator.facade.IdCreatorFacade" />
-		<property name="serviceUrl" value="${cal.id.url}IdCreatorFacade" />
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceInterface" value="com.think.creator.facade.IdCreatorFacade" />
+		<property name="serviceUrl" value="${id.url}IdCreatorFacade" />
 		<property name="readTimeout" value="1000" />
 	</bean>
-	
+
 </beans>

@@ -114,4 +114,12 @@ public class AuthUserInfo {
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthUserInfo [openid=" + openid + ", nickname=" + nickname
+				+ ", sex=" + sex + ", country=" + country + ", province="
+				+ province + ", city=" + city + ", headimgurl=" + headimgurl
+				+ ", privilege=" + privilege + ", unionid=" + unionid + "]";
+	}
 }

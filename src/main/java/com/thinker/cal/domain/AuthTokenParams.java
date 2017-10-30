@@ -25,21 +25,26 @@ import java.util.TreeMap;
  * 
  */
 
-public class AuthTokenParams extends AbstractParams implements Serializable{
+public class AuthTokenParams extends AbstractParams implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String appid; // 公众号的唯一标识
-	private String secret; // 公众号的appsecret
-	private String code; // 填写第一步获取的code参数
+	// 公众号的唯一标识
+	private String appid;
+	// 公众号的appsecret
+	private String secret;
+	// 填写第一步获取的code参数
+	private String code;
+	// 默认值无需更改
 	private String grant_type = "authorization_code";
 
 	public AuthTokenParams() {
 		super();
 	}
 
-	public AuthTokenParams(String appid, String secret, String code, String grant_type) {
+	public AuthTokenParams(String appid, String secret, String code,
+			String grant_type) {
 		super();
 		this.appid = appid;
 		this.secret = secret;
@@ -88,4 +93,11 @@ public class AuthTokenParams extends AbstractParams implements Serializable{
 	public String getGrant_type() {
 		return grant_type;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthTokenParams [appid=" + appid + ", secret=" + secret
+				+ ", code=" + code + ", grant_type=" + grant_type + "]";
+	}
+	
 }
