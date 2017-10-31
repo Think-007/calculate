@@ -1,5 +1,5 @@
 /*      						
- * Copyright 2012 LPF  All rights reserved.
+// * Copyright 2012 LPF  All rights reserved.
  * 
  * History:
  * ------------------------------------------------------------------------------
@@ -88,13 +88,18 @@ public class ShiroConfig {
 	@Bean(name = "shiroFilter")
 	public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-		shiroFilterFactoryBean.setSecurityManager(getDefaultWebSecurityManager());
+		shiroFilterFactoryBean
+				.setSecurityManager(getDefaultWebSecurityManager());
 		filterChainDefinitionMap.put("/static/**", "anon");
-		filterChainDefinitionMap.put("/admin/**", "authc");
-		filterChainDefinitionMap.put("/**", "anon");
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		shiroFilterFactoryBean.setSuccessUrl("/index");
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		filterChainDefinitionMap.put("/weichat/registration", "anon");
+		filterChainDefinitionMap.put("/weichat/authtoken/*", "anon");
+		filterChainDefinitionMap.put("/gate/mainpage", "anon");
+		filterChainDefinitionMap.put("/gate/authtoken", "anon");
+		filterChainDefinitionMap.put("/**", "authc");
+		shiroFilterFactoryBean.setLoginUrl("/gate/homepage");
+		shiroFilterFactoryBean.setSuccessUrl("/scorer/scorepad");
+		shiroFilterFactoryBean
+				.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
 

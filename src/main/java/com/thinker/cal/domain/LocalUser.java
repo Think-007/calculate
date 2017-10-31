@@ -18,6 +18,9 @@ public class LocalUser implements Serializable {
 	// 密码
 	private String pawssword;
 
+	// 盐值
+	private String salt;
+
 	// 真实姓名
 	private String realName;
 
@@ -141,14 +144,22 @@ public class LocalUser implements Serializable {
 		this.headURL = headURL;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	@Override
 	public String toString() {
 		return "LocalUser [userid=" + userid + ", userName=" + userName
-				+ ", pawssword=" + pawssword + ", realName=" + realName
-				+ ", sex=" + sex + ", birthday=" + birthday + ", height="
-				+ height + ", weight=" + weight + ", telNumber=" + telNumber
-				+ ", country=" + country + ", provienct=" + provienct
-				+ ", headURL=" + headURL + "]";
+				+ ", pawssword=" + pawssword + ", salt=" + salt + ", realName="
+				+ realName + ", sex=" + sex + ", birthday=" + birthday
+				+ ", height=" + height + ", weight=" + weight + ", telNumber="
+				+ telNumber + ", country=" + country + ", provienct="
+				+ provienct + ", headURL=" + headURL + "]";
 	}
 
 }
