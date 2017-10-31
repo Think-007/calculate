@@ -95,7 +95,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/weichat/authtoken/*", "anon");
 		filterChainDefinitionMap.put("/gate/mainpage", "anon");
 		filterChainDefinitionMap.put("/gate/authtoken", "anon");
-		filterChainDefinitionMap.put("/**", "authc");
+		filterChainDefinitionMap.put("/**", "anon");
 		shiroFilterFactoryBean.setLoginUrl("/gate/homepage");
 		shiroFilterFactoryBean.setSuccessUrl("/scorer/scorepad");
 		shiroFilterFactoryBean

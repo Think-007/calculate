@@ -9,21 +9,15 @@
 
 package com.thinker.cal.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.ExcessiveAttemptsException;
-import org.apache.shiro.authc.ExpiredCredentialsException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +37,7 @@ import com.thinker.cal.domain.UserRegistParam;
 import com.thinker.cal.service.UserInfoService;
 import com.thinker.cal.service.WeiChatAuthService;
 import com.thinker.cal.util.CalLog;
+import com.thinker.cal.util.JsonUtils;
 
 /**
  * 
@@ -60,8 +55,7 @@ import com.thinker.cal.util.CalLog;
 @RequestMapping("/weichat")
 public class AuthController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(AuthController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 	// 随机盐值
 	// @Value("${shiro.salt}")
 	private String saltStr = "333";
@@ -73,9 +67,10 @@ public class AuthController {
 
 	private UserInfoService userInfoService;
 
+	private static final Map<Object, Object> cache = new HashMap<Object, Object>();
+
 	@RequestMapping("/registration")
-	public ModelAndView registUser(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView registUser(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		UserRegistParam userRegistParam = new UserRegistParam();
 		CalLog.info(logger, "enter registUser", null, userRegistParam);
@@ -99,6 +94,8 @@ public class AuthController {
 			CalLog.debug(logger, "registUser", null, localUser);
 
 			// 3、用户信息暂时存储到redis
+			String tempInfo = JsonUtils.toJson(localUser);
+			cache.put(userRegistParam.getTelNum(), tempInfo);
 
 			// 4、请求访问用户微信信息授权码
 			CalLog.info(logger, "req weicaht code", null, null);
@@ -109,8 +106,7 @@ public class AuthController {
 			authCodeParams.setAppid(WeiChatConfig.APP_ID);
 			authCodeParams.setScope(AuthCodeParams.SCOPE_SNSAPIBASE);
 			authCodeParams.setState(4 + "");
-			url = weiChatAuthService.getAuthPath(authCodeParams,
-					WeiChatConfig.OAUTH_AUTHORIZE_URL);
+			url = weiChatAuthService.getAuthPath(authCodeParams, WeiChatConfig.OAUTH_AUTHORIZE_URL);
 			CalLog.debug(logger, "registUser", null, "url: " + url);
 			mv.setViewName("redirect:" + url);
 
@@ -134,8 +130,7 @@ public class AuthController {
 	 * @return
 	 */
 	@RequestMapping("/authtoken/{telnum}")
-	public ModelAndView toeknAuth(HttpServletRequest request,
-			HttpServletResponse response,
+	public ModelAndView toeknAuth(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("telnum") String telNumber) {
 
 		System.out.println(telNumber);
@@ -150,23 +145,33 @@ public class AuthController {
 			authTokenParams.setSecret(WeiChatConfig.APP_SECRET);
 			System.out.println("authTokenParams : " + authTokenParams);
 			// 2、请求token
-			AuthAccessToken authAccessToken = weiChatAuthService
-					.getAuthAccessToken(authTokenParams,
-							WeiChatConfig.OAUTH_ACCESS_TOKEN_URL);
+			AuthAccessToken authAccessToken = weiChatAuthService.getAuthAccessToken(authTokenParams,
+					WeiChatConfig.OAUTH_ACCESS_TOKEN_URL);
 			System.out.println("authAccessToken-->" + authAccessToken);
 			// 3、拉取用户信息
-			AuthUserInfo authUserInfo = weiChatAuthService.getAuthUserInfo(
-					authAccessToken.getAccess_token(),
+			AuthUserInfo authUserInfo = weiChatAuthService.getAuthUserInfo(authAccessToken.getAccess_token(),
 					authAccessToken.getOpenid());
 			System.out.println("authUserInfo-->" + authUserInfo);
 			// 4、根据电话号码查询用户信息，并更新用户微信信息
-			LocalUser userInfo = new LocalUser();// userInfoService.getUserInfoByUid("");
-
+			String tempInfo = (String) cache.get(telNumber);
+			LocalUser userInfo = JsonUtils.fromJson(tempInfo, LocalUser.class);
 			userInfo.setUserid(authUserInfo.getOpenid());
 			userInfo.setHeadURL(authUserInfo.getHeadimgurl());
-			userInfo.setUserName("18201410900");
-			userInfo.setPawssword("123456");
-			mv.setViewName("/scorer/scorepad");
+			userInfo.setUserName(authUserInfo.getNickname());
+			// 5、数据入库,入库后删除缓存信息
+
+			// 6、查询场地列表信息，返回给页面
+			String msg = "场地列表信息";
+
+			// 7、shiro鉴权，缓存用户状态
+			UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUserid(), userInfo.getPawssword());
+			token.setRememberMe(true);
+			Subject subject = SecurityUtils.getSubject();
+			subject.login(token);
+			if (subject.isAuthenticated()) {
+				mv.addObject("msg", msg);
+				mv.setViewName("/scorer/scorepad");
+			}
 
 			// if (userInfo == null) {
 			// mv.setViewName("/home");
@@ -210,7 +215,7 @@ public class AuthController {
 			// System.out.println(msg);
 			// } catch (ExpiredCredentialsException e) {
 			// msg = "帐号已过期. the account for username "
-			// + token.getPrincipal() + "  was expired.";
+			// + token.getPrincipal() + " was expired.";
 			// mv.addObject("msg", msg);
 			// System.out.println(msg);
 			// } catch (UnknownAccountException e) {
@@ -245,6 +250,7 @@ public class AuthController {
 	public ModelAndView testindex() {
 
 		ModelAndView mv = new ModelAndView();
+
 		mv.addObject("msg", "返回的信息");
 		mv.setViewName("redirect:/");
 		return mv;

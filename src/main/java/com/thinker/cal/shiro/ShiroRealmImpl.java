@@ -39,15 +39,13 @@ import org.springframework.stereotype.Service;
 public class ShiroRealmImpl extends AuthorizingRealm {
 
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(
-			PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
 		UsernamePasswordToken authToken = (UsernamePasswordToken) token;
 
@@ -55,17 +53,15 @@ public class ShiroRealmImpl extends AuthorizingRealm {
 		String password = String.copyValueOf(authToken.getPassword());
 
 		// 数据库用户名
-		String sqlUserName = "18201410900";
+		String sqlUserName = "rworiwer";
 
 		if (!userName.equals(sqlUserName)) {
 			return null;
 		}
 
 		// 数据库盐值
-		String sqlSalt = "333";
 
-		return new SimpleAuthenticationInfo(userName, password,
-				ByteSource.Util.bytes(sqlSalt), getName());
+		return new SimpleAuthenticationInfo();
 
 	}
 
