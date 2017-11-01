@@ -5,12 +5,43 @@
 
 	<insert id="registUser" parameterType="LocalUser">
 
-		select 1 from dual;
+		insert into mg_user(
+
+		userid,
+		username,
+		password,
+		telnumber,
+		salt,
+		realname,
+		sex,
+		birthday,
+		weight,
+		height,
+		country,
+		provience,
+		headurl
+
+		)values(
+
+		#{userid},
+		#{userName},
+		#{password},
+		#{telNumber},
+		#{salt},
+		#{realName},
+		#{sex},
+		#{birthday},
+		#{weight},
+		#{height},
+		#{country},
+		#{provience},
+		#{headURL}
+		)
 
 	</insert>
 
 	<select id="queryUserByUid" resultType="LocalUser">
-		select 1 from dual;
+		select * from mg_user where userid = #{userid};
 	</select>
 
 

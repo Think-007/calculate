@@ -1,7 +1,10 @@
 package com.thinker.cal.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.thinker.cal.domain.LocalUser;
 
+//@Mapper
 public interface UserInfoMapper {
 
 	/**

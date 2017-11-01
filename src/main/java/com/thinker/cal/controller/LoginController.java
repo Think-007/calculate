@@ -16,6 +16,8 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +28,7 @@ import com.thinker.cal.domain.AuthCodeParams;
 import com.thinker.cal.domain.AuthTokenParams;
 import com.thinker.cal.domain.AuthUserInfo;
 import com.thinker.cal.domain.LocalUser;
+import com.thinker.cal.service.UserInfoService;
 import com.thinker.cal.service.WeiChatAuthService;
 import com.thinker.cal.util.CalLog;
 
@@ -33,11 +36,22 @@ import com.thinker.cal.util.CalLog;
 @RequestMapping("/gate")
 public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(AuthController.class);
+
+	// 回调域名地址
+	@Value("${callback.host}")
+	private String host;
+
+	// 拉取微信信息业务
 	@Resource
 	private WeiChatAuthService weiChatAuthService;
 
-	// 登录跳转同一页面
+	// 本地用户信息业务
+	@Resource
+	private UserInfoService userInfoService;
+
+	// 登录跳转统一页面
 	@RequestMapping("/homepage")
 	public String tohome() {
 
@@ -53,16 +67,15 @@ public class LoginController {
 		String url = null;
 		try {
 			AuthCodeParams authCodeParams = new AuthCodeParams();
-			String redirect_uri = "http://e51ef162.ngrok.io/weichat/authtoken";
+			String redirect_uri = host + "/gate/authtoken/";
 			authCodeParams.setRedirect_uri(redirect_uri);
 			authCodeParams.setAppid(WeiChatConfig.APP_ID);
 			authCodeParams.setScope(AuthCodeParams.SCOPE_SNSAPIBASE);
 			authCodeParams.setState(4 + "");
-			url = weiChatAuthService.getAuthPath(authCodeParams, WeiChatConfig.OAUTH_AUTHORIZE_URL);
+			url = weiChatAuthService.getAuthPath(authCodeParams,
+					WeiChatConfig.OAUTH_AUTHORIZE_URL);
 
-			System.out.println("url : " + url);
-
-			// CalLog.debug(logger, "authBind", null, "url: " + url);
+			CalLog.info(logger, "authBind", null, "url: " + url);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,9 +93,9 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@SuppressWarnings("unused")
 	@RequestMapping("/authtoken")
-	public ModelAndView toeknAuth(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView toeknAuth(HttpServletRequest request,
+			HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView();
 		try {
@@ -94,18 +107,18 @@ public class LoginController {
 			authTokenParams.setSecret(WeiChatConfig.APP_SECRET);
 			System.out.println("authTokenParams : " + authTokenParams);
 			// 2、请求token
-			AuthAccessToken authAccessToken = weiChatAuthService.getAuthAccessToken(authTokenParams,
-					WeiChatConfig.OAUTH_ACCESS_TOKEN_URL);
+			AuthAccessToken authAccessToken = weiChatAuthService
+					.getAuthAccessToken(authTokenParams,
+							WeiChatConfig.OAUTH_ACCESS_TOKEN_URL);
 			System.out.println("authAccessToken-->" + authAccessToken);
 			// 3、拉取用户信息
-			AuthUserInfo authUserInfo = weiChatAuthService.getAuthUserInfo(authAccessToken.getAccess_token(),
+			AuthUserInfo authUserInfo = weiChatAuthService.getAuthUserInfo(
+					authAccessToken.getAccess_token(),
 					authAccessToken.getOpenid());
 			System.out.println("authUserInfo-->" + authUserInfo);
 			// 4、根据uid查询用户信息
-			LocalUser userInfo = new LocalUser();// userInfoService.getUserInfoByUid("");
-
-			userInfo.setUserid(authUserInfo.getOpenid());
-			userInfo.setHeadURL(authUserInfo.getHeadimgurl());
+			LocalUser userInfo = userInfoService.getUserInfoByUid(authUserInfo
+					.getOpenid());
 
 			String msg = "场地列表信息";
 
@@ -114,22 +127,61 @@ public class LoginController {
 				return mv;
 			} else {
 
-				UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUserid(), userInfo.getPawssword());
+				UsernamePasswordToken token = new UsernamePasswordToken(
+						userInfo.getUserid(), userInfo.getPassword());
 				token.setRememberMe(true);
 				Subject subject = SecurityUtils.getSubject();
-				subject.login(token);
-				if (subject.isAuthenticated()) {
+				try {
+					subject.login(token);
+					if (subject.isAuthenticated()) {
+						mv.addObject(userInfo);
+						mv.setViewName("/scorer/scorepad");
+						return mv;
+					}
+				} catch (IncorrectCredentialsException e) {
+					msg = "登录密码错误. Password for account "
+							+ token.getPrincipal() + " was incorrect.";
 					mv.addObject("msg", msg);
-					mv.setViewName("/scorer/scorepad");
-					return mv;
+					System.out.println(msg);
+				} catch (ExcessiveAttemptsException e) {
+					msg = "登录失败次数过多";
+					mv.addObject("msg", msg);
+					System.out.println(msg);
+				} catch (LockedAccountException e) {
+					msg = "帐号已被锁定. The account for username "
+							+ token.getPrincipal() + " was locked.";
+					mv.addObject("msg", msg);
+					System.out.println(msg);
+				} catch (DisabledAccountException e) {
+					msg = "帐号已被禁用. The account for username "
+							+ token.getPrincipal() + " was disabled.";
+					mv.addObject("msg", msg);
+					System.out.println(msg);
+				} catch (ExpiredCredentialsException e) {
+					msg = "帐号已过期. the account for username "
+							+ token.getPrincipal() + " was expired.";
+					mv.addObject("msg", msg);
+					System.out.println(msg);
+				} catch (UnknownAccountException e) {
+					msg = "帐号不存在. There is no user with username of "
+							+ token.getPrincipal();
+					mv.addObject("msg", msg);
+					System.out.println(msg);
+				} catch (UnauthorizedException e) {
+					msg = "您没有得到相应的授权！" + e.getMessage();
+					mv.addObject("msg", msg);
+					System.out.println(msg);
 				}
+				mv.setViewName("/home");
 
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable t) {
+			mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+			mv.addObject("ex", t);
+			mv.setViewName("/home");
+			t.printStackTrace();
 		}
-		mv.setViewName("/home");
 		return mv;
 	}
 

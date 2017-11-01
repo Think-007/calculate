@@ -16,7 +16,7 @@ public class LocalUser implements Serializable {
 	private String userName;
 
 	// 密码
-	private String pawssword;
+	private String password;
 
 	// 盐值
 	private String salt;
@@ -43,7 +43,7 @@ public class LocalUser implements Serializable {
 	private String country;
 
 	// 省份
-	private String provienct;
+	private String provience;
 
 	// 头像
 	private String headURL;
@@ -64,13 +64,6 @@ public class LocalUser implements Serializable {
 		this.userName = userName;
 	}
 
-	public String getPawssword() {
-		return pawssword;
-	}
-
-	public void setPawssword(String pawssword) {
-		this.pawssword = pawssword;
-	}
 
 	public String getRealName() {
 		return realName;
@@ -128,14 +121,6 @@ public class LocalUser implements Serializable {
 		this.country = country;
 	}
 
-	public String getProvienct() {
-		return provienct;
-	}
-
-	public void setProvienct(String provienct) {
-		this.provienct = provienct;
-	}
-
 	public String getHeadURL() {
 		return headURL;
 	}
@@ -152,14 +137,31 @@ public class LocalUser implements Serializable {
 		this.salt = salt;
 	}
 
+	public String getProvience() {
+		return provience;
+	}
+
+	public void setProvience(String provience) {
+		this.provience = provience;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "LocalUser [userid=" + userid + ", userName=" + userName
-				+ ", pawssword=" + pawssword + ", salt=" + salt + ", realName="
+				+ ", password=" + password + ", salt=" + salt + ", realName="
 				+ realName + ", sex=" + sex + ", birthday=" + birthday
 				+ ", height=" + height + ", weight=" + weight + ", telNumber="
-				+ telNumber + ", country=" + country + ", provienct="
-				+ provienct + ", headURL=" + headURL + "]";
+				+ telNumber + ", country=" + country + ", provience="
+				+ provience + ", headURL=" + headURL + "]";
 	}
+
 
 }

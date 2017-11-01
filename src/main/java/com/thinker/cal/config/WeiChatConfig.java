@@ -9,10 +9,9 @@
 
 package com.thinker.cal.config;
 
-
 /**
  * 
- * 类简要描述
+ * 微信鉴权配置类
  * 
  * <p>
  * 类详细描述

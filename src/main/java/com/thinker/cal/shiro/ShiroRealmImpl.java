@@ -9,20 +9,20 @@
 
 package com.thinker.cal.shiro;
 
+import javax.annotation.Resource;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.Authorizer;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.thinker.cal.domain.LocalUser;
+import com.thinker.cal.service.UserInfoService;
 
 /**
  * 
@@ -38,30 +38,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShiroRealmImpl extends AuthorizingRealm {
 
+	@Resource
+	private UserInfoService userInfoService;
+
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(
+			PrincipalCollection principals) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(
+			AuthenticationToken token) throws AuthenticationException {
 
 		UsernamePasswordToken authToken = (UsernamePasswordToken) token;
 
-		String userName = authToken.getUsername();
+		String userId = authToken.getUsername();
 		String password = String.copyValueOf(authToken.getPassword());
 
-		// 数据库用户名
-		String sqlUserName = "rworiwer";
+		LocalUser userInfo = userInfoService.getUserInfoByUid(userId);
 
-		if (!userName.equals(sqlUserName)) {
+		// 数据库用户id
+		String sqlUsrId = userInfo.getUserid();
+
+		if (!userId.equals(sqlUsrId)) {
 			return null;
 		}
 
-		// 数据库盐值
-
-		return new SimpleAuthenticationInfo();
+		return new SimpleAuthenticationInfo(userId, password, getName());
 
 	}
 
