@@ -41,7 +41,15 @@
 	</insert>
 
 	<select id="queryUserByUid" resultType="LocalUser">
-		select * from mg_user where userid = #{userid};
+		select 
+		
+		userid as userid,
+		username as userName,
+		headurl as headURL 
+		
+		from mg_user 
+		
+		where userid = #{userid};
 	</select>
 
 
