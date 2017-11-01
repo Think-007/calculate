@@ -42,7 +42,7 @@ import com.thinker.cal.domain.AuthTokenParams;
 import com.thinker.cal.domain.AuthUserInfo;
 import com.thinker.cal.domain.LocalUser;
 import com.thinker.cal.domain.UserRegistParam;
-import com.thinker.cal.service.UserInfoService;
+import com.thinker.cal.service.RegistService;
 import com.thinker.cal.service.WeiChatAuthService;
 import com.thinker.cal.util.CalLog;
 import com.thinker.cal.util.JsonUtils;
@@ -79,9 +79,9 @@ public class AuthController {
 	private WeiChatAuthService weiChatAuthService;
 
 	@Resource
-	private UserInfoService userInfoService;
+	private RegistService registService;
 
-	private static final Map<Object, Object> cache = new HashMap<Object, Object>();
+	public static final Map<Object, Object> cache = new HashMap<Object, Object>();
 
 	@RequestMapping("/registration")
 	public ModelAndView registUser(HttpServletRequest request,
@@ -176,8 +176,14 @@ public class AuthController {
 					authAccessToken.getOpenid());
 			System.out.println("authUserInfo-->" + authUserInfo);
 			// 4、根据电话号码查询用户信息，并更新用户微信信息
-			LocalUser userInfo = registLocalUser(telNumber, authUserInfo);
-			// 5、查询场地列表信息，返回给页面
+			String tempInfo = (String) cache.get(telNumber);
+			LocalUser userInfo = JsonUtils.fromJson(tempInfo, LocalUser.class);
+			userInfo.setUserid(authUserInfo.getOpenid());
+			userInfo.setHeadURL(authUserInfo.getHeadimgurl());
+			userInfo.setUserName(authUserInfo.getNickname());
+			// 5、数据入库,并查询场地列表信息，返回给页面,保证同一事物
+			registService.registAndGetPlace(userInfo);
+			cache.remove(userInfo.getTelNumber());
 			String msg = "场地列表信息";
 
 			// 6、shiro鉴权，缓存用户状态
@@ -237,26 +243,6 @@ public class AuthController {
 		}
 		CalLog.info(logger, "finish toeknAuth", null, null);
 		return mv;
-	}
-
-	/**
-	 * 存储用户信息
-	 * 
-	 * @param telNumber
-	 * @param authUserInfo
-	 * @return
-	 */
-	private LocalUser registLocalUser(String telNumber,
-			AuthUserInfo authUserInfo) {
-		String tempInfo = (String) cache.get(telNumber);
-		LocalUser userInfo = JsonUtils.fromJson(tempInfo, LocalUser.class);
-		userInfo.setUserid(authUserInfo.getOpenid());
-		userInfo.setHeadURL(authUserInfo.getHeadimgurl());
-		userInfo.setUserName(authUserInfo.getNickname());
-		// 数据入库,入库后删除缓存信息
-		userInfoService.saveUserInfo(userInfo);
-		cache.remove(userInfo.getTelNumber());
-		return userInfo;
 	}
 
 	@RequestMapping("/test")
