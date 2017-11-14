@@ -45,9 +45,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- 前端页面解析模板 -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-thymeleaf</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 		<!-- boot 集成 mybatis -->
 		<dependency>
