@@ -55,7 +55,7 @@
 				/weichat/authtoken/* = anon
 				/gate/mainpage = anon
 				/gate/authtoken = anon
-				/** = anon
+				/** = anon <!-- authc -->
 				<!-- /login/getContextPath = anon /login/timeout = anon /logout = logout 
 					/login/tologin = anon /views/demo/** = anon /views/userRegister.html = anon 
 					/hessian/* = anon /views/** = user,permissionFilter /management/business/* 
