@@ -1,0 +1,15 @@
+.m-h-580{min-height:580px;}
+.tfoot{padding:8px;border:solid 1px #ddd;border-top:0;text-align:center;}
+.dataTables_paginate{max-height:49px;}
+.attachOther{margin-right:0;margin-left:0;}
+.checkAll-group .checkbox-inline {margin-left: 15px;}
+.ds-med-table{width:30%;}
+
+.ds-addGroup .ds-cell-addon.title{width:30%;text-align:right;}
+
+@media(max-width:768px){
+   .ds-med-table{width:100%;}
+   .checkAll-group .checkbox-inline {margin-left: 0px;}
+}
+
+

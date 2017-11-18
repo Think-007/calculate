@@ -1,0 +1,478 @@
+{
+		"COPYRIGHT":"Copyright @ 2017 Beijing Xinwei Technology Group.Co., Ltd.All rights reserved.",
+		"addTemplate":"Add Template",
+		"deleteGroup":"Delete Group",
+		"exportGroup":"Export Group",
+		"addGroup":"Add Group",
+		"USER_NAME_IS_NULL":"用户名错误",
+		"PASSWORD_IS_NULL":"密码错误",
+		"MENU_DEMO_HOME":"Home",
+	    "MENU_COOBILL_AUDIT":"Verification Review",
+		"MENU_AUDIT_STATISTIC":"Review Statistics",
+		"MENU_AUDIT_PENDAUDIT":"Pending Review",
+		"MENU_AUDIT_NOPASS":"Rejected",
+		"MENU_AUDIT_HISTORY":"Processed Queries",
+		"MENU_USER_CENTER":"User Center",
+		"MENU_USER_INFO":"User Data",
+		"MENU_MODIFY_PWD":"Change Password",
+		"MENU_USER_MS":"User Management",
+		"MENU_ROLE_MS":"Role Management",	
+		"MENU_COMPANY_MS":"Company Management",
+		"MENU_DEMO_404":"404Page",
+		"MENU_DEMO_500":"500Page",
+        "MENU_ETS_MS":"NE Management",
+        "MENU_FORM_MS":"Report Management",
+        "MENU_TEAM_MS":"NE Group Management",
+        "MENU_DETAIL_MS":"Group Details",
+        "MENU_EXPORT_MS":"Report Export",
+        "MENU_DOWN_MS":"Report Download",
+        "MENU_TEMP_MS":"Report Template",
+        
+		"ALL_DEVICE":"All Devices",
+		"SYSTEM_TITLE":"Background Management System",
+		"BTS_MANAGE":
+		{
+	     	"COMMENT":"/*网元管理模块*/",
+	     	"TITLE":"NE Management",
+	     	"NE_GROUP_MANAGEMENT":
+			{
+	     	   "COMMENT":"/*分组模块*/",
+	     	   "TITLE":"Group Details",
+	     	   "DEVICE_GROUP_MANAGE":"Device Group Management",
+	     	   "SELECT_NE_TYPE":"Select NE Type:",
+	     	   "ADD_GROUP":"Add Group",
+	     	   "DELETE":"Delete",
+	     	    "TOP":"Top",
+	     	   "BUTTOM":"Buttom",
+	     	    "MOVEUP":"Move Up",
+	     	     "MOVEDOWN":"Move Down",
+	     	   "EXPORT":"Export",
+	     	   "DEVEICE_TYPE":"Device Type",
+	     	   "GROUP_NAME":"Group Name",
+	     	   "ACTION":"Action",
+	     	   "VIEW":"View",
+	     	   "IMPORT":"Import",
+	     	   "EXPORT_ALL":"Export All",
+	     	   "INFORMATION_N":"INFORMATION N/A",
+	     	   "NEXTSTEP":"Background has recorded all page data, please proceed to next step!",
+	     	   "CHOOSE_FILE":"Select File:",
+	     	   "DOWNLOAD_TEMP":"Download Template"
+	     	},
+	     	"GROUP_DETAILS":
+			{
+	     	   "COMMENT":"/*分组详情模块*/",
+	     	   "TITLE":"Station Group Management",
+	     	   "SELECT_NE_TYPE":"Select NE Type:",
+	     	   "GROUP":"GROUP",
+	     	   "NE_NAME":"NE Name",
+	     	   "NE_TYPE":"NE Type",
+	     	    "NE_TYPE_SELECT":"Select the NE Type",
+	     	    "ENTER_GROUP_NAME":"Enter Group Name",
+	     	    "SELEVT_FILE_UPLOAD":"Select the file to upload",
+	     	   "FTP_PORT":"FTP Port",
+	     	   "FTP_USERNAME":"FTP Username",
+	     	   "PATH":"Path",
+	     	   "NMIP":"NM IP",
+	     	   "INTERVAL":"Update Time",
+	     	   "NAME_PLACEHOLDER":"Enter NEID, NEname(SAGID or NMIP)",
+	     	   "FORM_PLACEHOLDER":"Enter NEID, NEname",
+	     	   "SWITCH":"Switch",
+	     	   "FAILURE_REASON":"failure reason",
+	     	   "OPEN":"Open",
+	     	   "CLOSE":"Close",
+	     	   "OPEN_ALL":"Open All",
+	     	   "CLOSE_ALL":"Close All"
+	     	}
+	     	
+		},
+		
+			
+	"REPORT_MANAGE":{
+		
+		"TITLE":"Report Management",
+		"REPORT_EXPORT":
+			{
+				"COMMENT":"/**/",
+			"TITLE":"Report Export",
+			"SELECT_TEMP":"SELECT TEMPLATE",
+			"SELECT_TIME":"SELECT TIME",
+			"SELECT_DEVICE":"SELECT DEVICE",
+			"COUNT_KPI":"COUNT KPI",
+			"SUMMARY":"SUMMARY",
+			"REPORT_TITLE":"Report Title",
+            "SELECT_TYPE":"Select Type"	,
+            "BYHOUR":"By Hour",		
+            "BYDAY":"By Day",
+            "SELECT_START_TIME":"Select Start Time",
+            "SELECT_END_TIME":"Select End Time",
+            "TITLE_PLACEHOLDER":"Enter Report Title",
+            "TITLE2":"Choose NE Type！",
+            "TITLE3":"Choose Time！",
+            "TITLE4":"Choose Device！",
+            "TITLE5":"Choose KPI！",
+            "PRVIEW_TIME_SELECT":"Preview Time Selected",
+             "START_TIME":"Start Time",
+            "END_TIME":"End Time",
+            "SELECT_GROUP":"Select Group",
+            "NE_NAME":"NE Name",
+            "SELECT_ALL":"Select All",
+            "PREVIEW_DEVICE_SELECTED":"Preview Device Selected",
+            "NO":"No.",
+            "PREVIEW_KPI_SELECTED":"Preview KPI Selected",
+            "KPI":"KPI",
+            "DESCRIPTION":"Description",
+            "SELECT_KPI":"Select KPI",
+            "SELECT_KPI_GROUP":"Select KPI Group",
+            "DEVICE_NAME":"Device Name",
+            "TIME_SELECTED":"Selected Time",
+            "DEVICE_SELECTED":"Selected Device",
+            "KPI_SELECTED":"Selected KPI"
+			},
+			"REPORT_NEW":
+			{
+			"TITLE":"Report Template",
+			"TEMPLATE_NAME":"Template Name",
+			"TEMPLATE_TYPE":"Template Type",
+			"NAME_TIP":"Please enter template name.",
+			"CREATE_TEMP":"Create Template",
+			"ADD_TEMPLATE":"Add Template",
+			"EDIT_TEMPLATE":"Edit Template"
+			},
+			"REPORT_DOWN_MANAGE":
+			{
+			"TITLE":"Report Download Management",
+			"REPORT_TITLE":"Report Title",
+			"TIME_TO_GERNARATE":"Time to Generate",
+			"OPERATOR":"Operator",
+			"EXPORT_FINISHED":"Export Finished"
+			},
+			"REPORT_TEMP_MANAGE":
+			{
+			"TITLE":"Report Template Management"
+			}
+			
+	},
+		"LOGIN_ITEM":
+		{
+			"COMMENT":"/*����Ϊ��¼ҳ����*/",
+			"USERNAME":"Enter Username",
+			"PASSWORD":"Enter Password",
+			"LOGIN":"Log In",
+			"EXIT":"EXIT",
+			"EDIT_PASS":"Change Password",
+			"USER_INFORMATION":"User Center",
+			"TITLENAME":"Traffic Statistics System"
+			
+		},
+		"REVIEW_STASTIC":
+		{
+			 "COMMENT":"/*����Ϊ��֤��˲˵�*/",
+		     "VERI_Review":"Verification Review",
+		     "PEND_REVIEW":"Pending Review",
+		     "APPROVED":"Approved",
+		     "REJECTED":"Rejected",
+		     "PROCESSED_QUERIES":"Processed Queries"
+		},
+		"PEND_REVIEW":
+		{
+			"COMMENT":"/*����Ϊ�����ҳ��*/",
+			"TITLE":"Pending Review",
+			"NAME_ACCOUNT":"Real Name/Account",
+			"CHOOSE_TYPE":"Choose ID Type",
+			"IDCARD":"ID Card",
+			"PASSPORT":"Passport"
+		},
+		"BUTTON_NAME":
+		{
+			"COMMENT":"/*����Ϊ��ť*/",
+		    "SEARCH":"Search",
+		    "RESET":"Reset",
+		    "EXPORT":"Export",
+		    "NEXT":"Next",
+		    "PREVIOUS":"Previous",
+		    "ADD":"Add",
+		    "ADD_ALL":"Add All Page Data",
+		    "SUBMIT":"Submit",
+		    "DELETE_ALL":"Delete All",
+		     "DELETE":"Delete",
+		    "EDIT":"Edit",
+		     "COPY":"Copy",
+		    "DOWNLOAD":"Download",
+		    "UPDATE":"Update",
+		    "BACK":"Back",
+		    "REFRESH":"Refresh"
+		},
+		"TABLE_TITLE":
+		{
+			"COMMENT":"/*����Ϊ���*/",
+			"NUM":"No.",
+		    "SERIAL":"Serial No.",
+		    "ACCOUNT":"Account",
+		    "REAL_NAME":"Real Name",
+		    "ID_TYPE":"ID Type",
+		    "ID_NUM":"ID No.",
+		    "APPLICATION":"Application Date",
+		    "ACTION":"Action",
+		    "DETAILS":"Details",
+		    "NO_DATA":"No data available!",
+		    "BACK":">Back",
+		    "TIPS":"Double-click or View to review or view details"
+		},
+		"AUDIT_STATUS":
+		{
+			"COMMENT":"/*����Ϊ�������*/",
+		  	"APPROVED":"Review approved!",
+		  	"FIRST_PIECE":"It's already the first piece",
+		  	"LAST_PIECE":"It's already the last piece",
+		  	"APPROVE_NEXT":"Approve and Next",
+		  	"CONFIRM_NEXT":"Confirm and Next",
+		  	"LAST":"Last",
+		  	"NEXT":"Next",
+		  	"REJECT":"reject",
+		  	"CANCEL":"Cancel",
+		  	"REVIEW_HISTORY":"Review History��"
+		},
+		"NOPASS_REASON":
+		{
+			"COMMENT":"/*����Ϊ��ͨ������*/",
+			"REASON_REJECT":"Reasons for Rejection",
+			"FRONT_IMAGE_UN":"Front side image unclear",
+			"BACK_IMAGE_UN":"Back side image unclear",
+			"FRONT_ID_UN":"You holding your ID card (front side) not clear",
+			"BACK_ID_UN":"You holding your ID card (back side) not clear",
+			"STAMPS_UN":"Page with stamps unclear",
+			"INFO_MATCH_UN":"The input information does not match that in ID",
+			"ENTER_REASON":"Please enter reason"
+		},
+		"SEARCH_ITEM":
+		{
+			"COMMENT":"/*����Ϊ������*/",
+			"OPERATOR":"Select Operator"
+		},
+	
+		"USER_MANAGE":
+		{
+			"COMMENT":"/*����Ϊ�û�����ģ��*/",
+			"TITLE":"User Center",
+			"PERSONAL_DATA":
+			{
+				"COMMENT":"/*����Ϊ��������ģ��*/",
+				"TITLE":"Personal Data",
+				"USER_DATA":"User Data",
+				"ACCOUNT":"Account:",
+				"NAME":"Name:",
+				"ACCOUNT_NAME":"Account/Name",
+				"GENDER":"Gender:",
+				"MALE":"male",
+				"FEMALE":"female",
+				"ID_CARD":"ID Card",
+				"PASSPORT":"Passport",
+				"PHONE_NUM":"Phone No.:",
+				"BIRTH_DATE":"Date of Birth:",
+				"MAIL":"E-mail:",
+				"ID_TYPE":"ID Type:",
+				"ID_NUM":"ID No.:",
+				"ADDRESS":"Address:",
+				"ROLE":"Role:",
+				"USER_STATUS":"User Status:"	
+			},
+			"CHANGE_PASSWORD":
+			{
+				"COMMENT":"/*����Ϊ�޸�����ģ��*/",
+				"TITLE":"Change Password",
+				"OLD_PASSWORD":"Old Password:",
+				"NEW_PASSWORD":"New Password:",
+				"CONFIRM_PASSWORD":"Confirm Passowrd:",
+				"RESET_PASSWORD":"Reset Passowrd",
+				"TIPS":
+				{
+					"ACTION_SUCCESS":"Action succeeded!",
+					"CHANGED_PASSWORD":"Password changed successfully. Please memorize your new password and you can re-log in with new password",
+					"SUGGEST_CHANGED_PASSWORD":"We suggest you log in with new password now in case you forget your new password.",
+					"NOTES":"Notes: if you change password many times, please log in with the latest password.",
+					"OLD_PASSWORD_ERROR":"Old password incorrect",
+					"ENTER_OLD_PASSWORD":"Enter old password",
+					"REPEAT_PASSWORD_ERROR":"New passowrds do not match",
+					"ENTER_NEW_PASSWORD":"Please re-enter password",
+					"NEW_PASSWORD_ERROR":"New password incorrect",
+					"ENTER_NEW_PASSWORD":"Please re-enter password",
+					"NEW_PASSWORD_ERROE":"New passowrds do not match"
+				}
+			},
+		
+			"USER_MANAGEMENT":
+			{
+				"COMMENT":"/*����Ϊ�û�������ģ��*/",
+				"TITLE":"User Management",
+				"USER_LIST":"User List",
+				"NAME":"Name",
+				"ACCOUNT":"Account",
+				"ROLE":"Role",
+				"SELECT_ROLE":"Select Role",
+				"MOBILE_PHONE":"Link to mobile phone",
+				"CREAT_TIME":"Creation Time",
+				"USAGE_STATUS":"Usage Status",
+				"REVIEVED_STATUS":"Review Status",
+				"ACTION":"Action",
+				"IN_USE":"In Use",
+				"INVALID":"Invalid",
+				"RESET_PASSWORD":"Reset Passowrd",
+				"ADD_EDIT_USER":
+				{
+					"COMMENT":"/*����Ϊ�����༭�û�ģ��*/",
+					"EDIT_USER":"Edit User Info",
+					"ADD_USER":"Add User Info",
+					"COMPANY":"Company",
+					"BASIC_INFO":"Basic Info",
+					"SELECT_ROLE":"Select Role",
+					"PASSWORD":"Password",
+					"CONFIRM_PASSWORD":"Confirm Passowrd",
+					"MAIL":"E-mail",
+					"PREVIEW_PERMISSION":"Preview Permission"
+				},
+				"REVIEW_USER_INFO":{
+					"TITLE":"Review User Info",
+					"USER_INFO":"User Info",
+					"COMPANY_INFO":"Company Info"
+				},
+				"DELETE_USER":
+				{
+					"TITLE":"Delete User",
+					"CONFIRM_DELETE":"Are you sure to delete this user?"
+				},
+				"TIPS":
+				{
+					"MUST_SELECT_TIPS":"You must select at least one company",
+					"SELECT_COMPANY":"Select company",
+					"ENTER_NAME":"Enter name",
+					"LAST_SELECT_ROLE":"You must select at least one role",
+					"SELECT_ROLE":"Select role",
+					"PASSWORD_ERROR":"Password confirmation incorrect",
+					"ENTER_PASSWORD_NEXT":"Please re-enter password",
+					"MUST_ENTER_PHONE":"Phone No. can not be empty",
+					"ENTER_PHONE":"Enter phone No."
+				}
+			},
+			"ROLE_MANAGE":
+			{
+				"COMMENT":"/*����Ϊ��ɫ����ģ��*/",
+				"TITLE":"Role Management",
+				"USER_NAME":"User Name",
+				"PHONE_NUM":"Phone No.",
+				"ROLE_LIST":
+				{
+					"COMMENT":"/*����Ϊ��ɫ�б�ģ��*/",
+					"TITLE":"Role List",
+					"ADD_ROLE":"Add Role",
+					"ROLE_NAME":"Role Name",
+					"NOTES":"Notes",
+					"CONFIRM_DELETE":"Are you sure to delete this user?"
+				},
+				"ROLE_MANAGEMENT":
+				{
+					"COMMENT":"/*����Ϊ��ɫ�û�����ģ��*/",
+					"ADD_USER":"Add User",
+					"REMOVE_USER":"Remove User",
+					"ROLE_PERMISSION":"Role Permission",
+					"ADD_USER_ROLE":"Add User to Role",
+					"USER_NAME":"User Name",
+					"PHONE":"Phone No.",
+					"CHOOSE_DELETE_USER":"Please select users to be deleted first!",
+					"DELETE_USER":"Are you sure to delete this user?",
+					"ASSIGN_PERMISSION":"Assign Role Permission",
+					"SAVE_PERMISSION":"Save Permission",
+					"BACK":"Back"
+				}
+			},
+			"COMPANY_MANAGE":
+			{
+				"COMMENT":"/*����Ϊ��λ����ģ��*/",
+				"TITLE":"Company Management",
+				"USER_NAME":"User Name",
+				"PHONE_NUM":"Phone No.",
+				"COMPANY_LIST":
+				{
+					"COMMENT":"/*����Ϊ��λ�б�ģ��*/",
+					"TITLE":"Company List",
+					"COMPANY_NAME":"Company Name",
+					"COMPANY_TYPE":"Type of Company",
+					"ID_TYPE":"ID Type",
+					"ID_NUM":"ID No.",
+					"CONTACT":"Contact",
+					"CURRENT_STATUS":"Current Status",
+					"ACTION":"Action",
+					"REVIEVED":"Reviewed",
+					"NOT_REVIEVED":"Not Reviewed",
+					"REJECT":"Reject"
+				},
+				"ADD_EDIT_COMPANY":
+				{
+					"COMMENT":"/*����Ϊ�����༭��λģ��*/",
+					"EDIT_COMPANY_INFO":"Edit Company Info",
+					"ADD_COMPANY_INFO":"Add Company Info",
+					"COMPANY_NAME":"Company Name",
+					"COMPANY_ADDRESS":"Company Address",
+					"COMPANY_TYPE":"Type of Company",
+					"REGISTE_ADDRESS":"Registration Address",
+					"CONTACT_ADDRESS":"Company Address",
+					"CONTACT_PHONE":"Contact No.",
+					"CONTACT_MAIL":"Contact E-mail",
+					"GREATER":"Creater",
+					"BASIC_INFO":"Basic Info"
+				},
+				"TIPS":
+				{
+					"ENTER_COMPANY_NAME":"Enter company name",
+					"ENTER_COMPANY_TYPE":"Enter type of company",
+					"ENTER_ID_TYPE":"Enter ID type",
+					"ENTER_ID":"Enter ID",
+					"ENTER_REGISTER_ADDRESS":"Enter registration address",
+					"ENTER_COMPANY_ADDRESS":"Enter company address",
+					"ENTER_CONTACT_NUM":"Enter contact No.",
+					"ENTER_CONTACT":"Enter contact",
+					"ENTER_COMTACT_MAIL":"Enter contact E-mail address",
+					"ENTER_CREATER":"Enter creater"
+				}
+			},
+			"BUTTON_NAME":
+			{
+				"COMMENT":"/**/",
+				"EDIT_DATA":"Edit Data",
+				"SAVE":"Save",
+				"CONFIRM":"Confirm",
+				"CANCEL":"Cancel",
+				"SUBMIT":"Submit",
+				"CLOSE":"Close",
+				"QUERY":"Query",
+				"RESET":"Reset",
+				"ADD_USER":"Add User",
+				"EDIT_USER":"Edit User",
+				"ADD":"add",
+				"ADD_COMPANY":"Add Company",
+				"EDIT":"Edit",
+				"DELETE":"Delete",
+				"REJECT":"Reject",
+				"APPROVE":"Approve",
+				"REFRESH":"Refresh"
+			},
+			"TIPS":
+			{
+				"NO_DATA":"No data available!",
+				"HOME":"Home",
+				"RELOGIN":"Re-Log In",
+				"DESCRIBE_ERROR":"More than 120 bytes",
+				"DESCRIBE_TIP":"Input",
+				"BYTE":"bytes now"
+			},
+			"STATUS":
+			{
+				"APPROVE":"Approve",
+				"NOT_REVIEWED":"Not Reviewed",
+				"REJECT":"Reject",
+				"INVALID":"Invalid",
+				"INUSE":"In Use"
+			}
+			
+		}
+		
+}
