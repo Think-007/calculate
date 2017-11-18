@@ -190,7 +190,7 @@ public class LoginController {
 
 		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("/home");
+		mv.setViewName("/phoneScore/count");
 		return mv;
 	}
 
