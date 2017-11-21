@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.think.creator.domain.ProcessResult;
 import com.thinker.cal.config.WeiChatConfig;
 import com.thinker.cal.domain.AuthAccessToken;
 import com.thinker.cal.domain.AuthCodeParams;
@@ -30,6 +31,7 @@ import com.thinker.cal.domain.AuthUserInfo;
 import com.thinker.cal.domain.LocalUser;
 import com.thinker.cal.service.UserInfoService;
 import com.thinker.cal.service.WeiChatAuthService;
+import com.thinker.cal.util.CalConst;
 import com.thinker.cal.util.CalLog;
 
 @Controller
@@ -94,10 +96,10 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/authtoken")
-	public ModelAndView toeknAuth(HttpServletRequest request,
+	public ProcessResult toeknAuth(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		ModelAndView mv = new ModelAndView();
+		ProcessResult processResult = new ProcessResult();
 		try {
 			// 1、拿到code
 			String code = request.getParameter("code");
@@ -123,8 +125,9 @@ public class LoginController {
 			String msg = "场地列表信息";
 
 			if (userInfo == null) {
-				mv.setViewName("/home");
-				return mv;
+
+				processResult.setRetCode(CalConst.USER_NOT_EXIST);
+				return processResult;
 			} else {
 
 				UsernamePasswordToken token = new UsernamePasswordToken(
@@ -134,52 +137,42 @@ public class LoginController {
 				try {
 					subject.login(token);
 					if (subject.isAuthenticated()) {
-						mv.addObject(userInfo);
-						mv.setViewName("/scorer/scorepad");
-						return mv;
+						processResult.setRetCode(ProcessResult.SUCCESS);
+						return processResult;
 					}
 				} catch (IncorrectCredentialsException e) {
 					msg = "登录密码错误. Password for account "
 							+ token.getPrincipal() + " was incorrect.";
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (ExcessiveAttemptsException e) {
 					msg = "登录失败次数过多";
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (LockedAccountException e) {
 					msg = "帐号已被锁定. The account for username "
 							+ token.getPrincipal() + " was locked.";
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (DisabledAccountException e) {
 					msg = "帐号已被禁用. The account for username "
 							+ token.getPrincipal() + " was disabled.";
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (ExpiredCredentialsException e) {
 					msg = "帐号已过期. the account for username "
 							+ token.getPrincipal() + " was expired.";
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (UnknownAccountException e) {
 					msg = "帐号不存在. There is no user with username of "
 							+ token.getPrincipal();
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				} catch (UnauthorizedException e) {
 					msg = "您没有得到相应的授权！" + e.getMessage();
-					mv.addObject("msg", msg);
 					System.out.println(msg);
 				}
-				mv.setViewName("/home");
 
 			}
 
 		} catch (Throwable t) {
-			mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-			mv.addObject("ex", t);
-			mv.setViewName("/home");
+			processResult.setRetCode(CalConst.EXCEPTION);
+			processResult.setRetMsg(CalConst.EXCEPTION_MSG);
 			t.printStackTrace();
 		}
 		return mv;
