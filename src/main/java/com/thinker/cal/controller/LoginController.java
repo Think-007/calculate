@@ -55,7 +55,7 @@ public class LoginController {
 	@RequestMapping("/homepage")
 	public String tohome() {
 
-		return "/home";
+		return "/";
 	}
 
 	// 获取用户微信授权码code
