@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.think.creator.domain.ProcessResult;
 import com.thinker.cal.config.WeiChatConfig;
 import com.thinker.cal.domain.AuthAccessToken;
 import com.thinker.cal.domain.AuthCodeParams;
@@ -42,8 +43,10 @@ import com.thinker.cal.domain.AuthTokenParams;
 import com.thinker.cal.domain.AuthUserInfo;
 import com.thinker.cal.domain.LocalUser;
 import com.thinker.cal.domain.UserRegistParam;
+import com.thinker.cal.exception.TelNumberRepeatException;
 import com.thinker.cal.service.RegistService;
 import com.thinker.cal.service.WeiChatAuthService;
+import com.thinker.cal.util.CalConst;
 import com.thinker.cal.util.CalLog;
 import com.thinker.cal.util.JsonUtils;
 
@@ -150,13 +153,13 @@ public class AuthController {
 	 * @return
 	 */
 	@RequestMapping("/authtoken/{telnum}")
-	public ModelAndView toeknAuth(HttpServletRequest request,
+	public ProcessResult toeknAuth(HttpServletRequest request,
 			HttpServletResponse response,
 			@PathVariable("telnum") String telNumber) {
 
 		CalLog.info(logger, "enter toeknAuth", null, "telNumber: " + telNumber);
 
-		ModelAndView mv = new ModelAndView();
+		ProcessResult processResult = new ProcessResult();
 		try {
 			// 1、拿到code
 			String code = request.getParameter("code");
@@ -194,62 +197,54 @@ public class AuthController {
 			try {
 				subject.login(token);
 				if (subject.isAuthenticated()) {
-					mv.addObject(userInfo);
-					mv.setViewName("/scorer/scorepad");
-					return mv;
+
+					processResult.setRetCode(ProcessResult.SUCCESS);
+					return processResult;
 				}
-			} catch (IncorrectCredentialsException e) {
-				msg = "登录密码错误. Password for account " + token.getPrincipal()
-						+ " was incorrect.";
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (ExcessiveAttemptsException e) {
-				msg = "登录失败次数过多";
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (LockedAccountException e) {
-				msg = "帐号已被锁定. The account for username "
-						+ token.getPrincipal() + " was locked.";
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (DisabledAccountException e) {
-				msg = "帐号已被禁用. The account for username "
-						+ token.getPrincipal() + " was disabled.";
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (ExpiredCredentialsException e) {
-				msg = "帐号已过期. the account for username " + token.getPrincipal()
-						+ " was expired.";
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (UnknownAccountException e) {
-				msg = "帐号不存在. There is no user with username of "
-						+ token.getPrincipal();
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			} catch (UnauthorizedException e) {
-				msg = "您没有得到相应的授权！" + e.getMessage();
-				mv.addObject("msg", msg);
-				System.out.println(msg);
-			}
-			mv.setViewName("/home");
+			} catch (TelNumberRepeatException e) {
+
+				processResult.setRetCode(CalConst.TEL_NUM_REGISTED);
+				processResult.setRetMsg("号码已经注册");
+
+			} // catch (IncorrectCredentialsException e1) {
+				// msg = "登录密码错误. Password for account " + token.getPrincipal()
+				// + " was incorrect.";
+				// System.out.println(msg);
+				// } catch (ExcessiveAttemptsException e2) {
+				// msg = "登录失败次数过多";
+				// System.out.println(msg);
+				// } catch (LockedAccountException e3) {
+				// msg = "帐号已被锁定. The account for username "
+				// + token.getPrincipal() + " was locked.";
+				// System.out.println(msg);
+				// } catch (DisabledAccountException e4) {
+				// msg = "帐号已被禁用. The account for username "
+				// + token.getPrincipal() + " was disabled.";
+				// System.out.println(msg);
+				// } catch (ExpiredCredentialsException e5) {
+				// msg = "帐号已过期. the account for username " +
+				// token.getPrincipal()
+				// + " was expired.";
+				// System.out.println(msg);
+				// } catch (UnknownAccountException e6) {
+				// msg = "帐号不存在. There is no user with username of "
+				// + token.getPrincipal();
+				// System.out.println(msg);
+				// } catch (UnauthorizedException e7) {
+				// msg = "您没有得到相应的授权！";
+				// System.out.println(msg);
+				// }
 
 		} catch (Throwable t) {
-			mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-			mv.addObject("ex", t);
-			mv.setViewName("/home");
+
+			processResult.setRetCode(CalConst.EXCEPTION);
+			processResult.setRetMsg(CalConst.EXCEPTION_MSG);
+			processResult.setRetObj(t);
 			t.printStackTrace();
 			CalLog.error(logger, "toeknAuth error", null, null, t);
 		}
-		CalLog.info(logger, "finish toeknAuth", null, null);
-		return mv;
-	}
-
-	@RequestMapping("/test")
-	public String test() {
-
-		return "/scorer/scorepad";
-
+		CalLog.info(logger, "finish toeknAuth", null, processResult);
+		return processResult;
 	}
 
 }

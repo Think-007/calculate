@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.thinker.cal.dao.UserInfoMapper;
 import com.thinker.cal.domain.LocalUser;
+import com.thinker.cal.exception.TelNumberRepeatException;
 import com.thinker.cal.service.UserInfoService;
 
 @Service
@@ -24,7 +25,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public int saveUserInfo(LocalUser localUser) {
 
-		int result = userInfoMapper.registUser(localUser);
+		int result = 0;
+		try {
+			result = userInfoMapper.registUser(localUser);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new TelNumberRepeatException("电话号码已经被注册");
+		}
 
 		return result;
 	}
