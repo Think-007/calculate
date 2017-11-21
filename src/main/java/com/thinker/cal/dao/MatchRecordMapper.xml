@@ -33,7 +33,7 @@
 
 	</insert>
 
-	<select id="queryMatchRecordByUserId" resultType="">
+	<select id="queryMatchRecordByUserId" >
 		select
 
 		t1.id as id,
