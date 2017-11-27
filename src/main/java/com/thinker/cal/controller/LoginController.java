@@ -175,7 +175,7 @@ public class LoginController {
 			processResult.setRetMsg(CalConst.EXCEPTION_MSG);
 			t.printStackTrace();
 		}
-		return mv;
+		return processResult;
 	}
 
 	@RequestMapping("/spaces")
