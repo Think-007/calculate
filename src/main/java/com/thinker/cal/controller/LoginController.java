@@ -17,12 +17,10 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.think.creator.domain.ProcessResult;
 import com.thinker.cal.config.WeiChatConfig;
 import com.thinker.cal.domain.AuthAccessToken;
 import com.thinker.cal.domain.AuthCodeParams;
@@ -33,6 +31,7 @@ import com.thinker.cal.service.UserInfoService;
 import com.thinker.cal.service.WeiChatAuthService;
 import com.thinker.cal.util.CalConst;
 import com.thinker.cal.util.CalLog;
+import com.thinker.creator.domain.ProcessResult;
 
 @Controller
 @RequestMapping("/gate")
