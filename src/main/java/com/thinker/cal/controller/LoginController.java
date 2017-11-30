@@ -1,5 +1,7 @@
 package com.thinker.cal.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.thinker.cal.config.WeiChatConfig;
@@ -26,7 +29,9 @@ import com.thinker.cal.domain.AuthAccessToken;
 import com.thinker.cal.domain.AuthCodeParams;
 import com.thinker.cal.domain.AuthTokenParams;
 import com.thinker.cal.domain.AuthUserInfo;
+import com.thinker.cal.domain.Court;
 import com.thinker.cal.domain.LocalUser;
+import com.thinker.cal.service.GolfPlaceService;
 import com.thinker.cal.service.UserInfoService;
 import com.thinker.cal.service.WeiChatAuthService;
 import com.thinker.cal.util.CalConst;
@@ -51,6 +56,10 @@ public class LoginController {
 	// 本地用户信息业务
 	@Resource
 	private UserInfoService userInfoService;
+
+	// 场地信息
+	@Resource
+	private GolfPlaceService golfPlaceService;
 
 	// 登录跳转统一页面
 	@RequestMapping("/homepage")
@@ -97,7 +106,7 @@ public class LoginController {
 	@RequestMapping("/authtoken")
 	public ProcessResult toeknAuth(HttpServletRequest request,
 			HttpServletResponse response) {
-
+		CalLog.info(logger, "enter toeknAuth", null, null);
 		ProcessResult processResult = new ProcessResult();
 		try {
 			// 1、拿到code
@@ -106,7 +115,8 @@ public class LoginController {
 			authTokenParams.setAppid(WeiChatConfig.APP_ID);
 			authTokenParams.setCode(code);
 			authTokenParams.setSecret(WeiChatConfig.APP_SECRET);
-			System.out.println("authTokenParams : " + authTokenParams);
+			CalLog.debug(logger, "toeknAuth", null, "authTokenParams : "
+					+ authTokenParams);
 			// 2、请求token
 			AuthAccessToken authAccessToken = weiChatAuthService
 					.getAuthAccessToken(authTokenParams,
@@ -116,12 +126,14 @@ public class LoginController {
 			AuthUserInfo authUserInfo = weiChatAuthService.getAuthUserInfo(
 					authAccessToken.getAccess_token(),
 					authAccessToken.getOpenid());
-			System.out.println("authUserInfo-->" + authUserInfo);
+
+			CalLog.debug(logger, "toeknAuth", null, "authUserInfo-->"
+					+ authUserInfo);
 			// 4、根据uid查询用户信息
 			LocalUser userInfo = userInfoService.getUserInfoByUid(authUserInfo
 					.getOpenid());
 
-			String msg = "场地列表信息";
+			String msg = null;
 
 			if (userInfo == null) {
 
@@ -136,7 +148,10 @@ public class LoginController {
 				try {
 					subject.login(token);
 					if (subject.isAuthenticated()) {
+						// 5.查询场地信息
+						List<Court> courtList = golfPlaceService.getAllCourt();
 						processResult.setRetCode(ProcessResult.SUCCESS);
+						processResult.setRetObj(courtList);
 						return processResult;
 					}
 				} catch (IncorrectCredentialsException e) {
@@ -172,18 +187,38 @@ public class LoginController {
 		} catch (Throwable t) {
 			processResult.setRetCode(CalConst.EXCEPTION);
 			processResult.setRetMsg(CalConst.EXCEPTION_MSG);
+			CalLog.error(logger, "toeknAuth", null, processResult, t);
 			t.printStackTrace();
 		}
+		CalLog.info(logger, "finish toeknAuth", null, processResult);
 		return processResult;
 	}
 
-	@RequestMapping("/spaces")
-	public ModelAndView getGolfSpace() {
+	@RequestMapping(value = "/spaces", method = RequestMethod.GET)
+	public ProcessResult getGolfSpace() {
 
-		ModelAndView mv = new ModelAndView();
+		CalLog.info(logger, "enter getGolfSpace", null, null);
+		ProcessResult processResult = new ProcessResult();
 
-		mv.setViewName("/phoneScore/count");
-		return mv;
+		try {
+			List<Court> courtList = golfPlaceService.getAllCourt();
+			if (courtList != null) {
+
+				processResult.setRetCode(ProcessResult.SUCCESS);
+				processResult.setRetMsg("ok");
+				processResult.setRetObj(courtList);
+			}
+		} catch (Throwable t) {
+			processResult.setRetCode(CalConst.EXCEPTION);
+			processResult.setRetMsg(CalConst.EXCEPTION_MSG);
+			CalLog.error(logger, "getGolfSpace", null, processResult, t);
+			t.printStackTrace();
+
+		}
+
+		CalLog.info(logger, "finish getGolfSpace", null, processResult);
+		return processResult;
+
 	}
 
 }

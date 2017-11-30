@@ -50,7 +50,7 @@ public class MatchRecord implements Serializable {
 	private int swingTimes;
 
 	// 成绩
-	private int score;
+	private String score;
 
 	// 比赛时间
 	private Date createTime;
@@ -69,6 +69,14 @@ public class MatchRecord implements Serializable {
 
 	public void setMatchName(String matchName) {
 		this.matchName = matchName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getCourtId() {
@@ -95,20 +103,12 @@ public class MatchRecord implements Serializable {
 		this.swingTimes = swingTimes;
 	}
 
-	public int getScore() {
+	public String getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(String score) {
 		this.score = score;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public Date getCreateTime() {
@@ -121,9 +121,10 @@ public class MatchRecord implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MatchRecord [id=" + id + ", matchName=" + matchName + ", userId=" + userId + ", courtId=" + courtId
-				+ ", playerName=" + playerName + ", swingTimes=" + swingTimes + ", score=" + score + ", createTime="
-				+ createTime + "]";
+		return "MatchRecord [id=" + id + ", matchName=" + matchName
+				+ ", userId=" + userId + ", courtId=" + courtId
+				+ ", playerName=" + playerName + ", swingTimes=" + swingTimes
+				+ ", score=" + score + ", createTime=" + createTime + "]";
 	}
 
 }
