@@ -49,7 +49,7 @@
     <script src="../../../js/config/config_skin.js" type="text/javascript"></script>
     <script src="../../../js/App.js" type="text/javascript"></script>
     <!-- Home JS-->
-    <script src="../../../js/home.js" type="text/javascript"></script>
+     <script src="../../../js/phoneScore/newGamer.js" type="text/javascript"></script>
     <style type="text/css">
         #leftMenu_navbar{
             width: 0;
@@ -63,7 +63,7 @@
         }
     </style>
 </head>
-<body ng-controller="app">
+<body ng-controller="newGamerCtrl">
 <div class="page-loader-wrapper" ng-include="'template/loading.html'"></div>
 <div class="overlay"></div>
 <!-- Page Loader -->
@@ -71,32 +71,21 @@
 <div id="wrapper">
     <h1 style="font-family: 'microsoft yahei'">球员</h1>
     <div class="col-lg-12 row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-primary waves-effect" style="width: 100%">新球员</button></div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-success waves-effect" style="width: 100%">启动计分</button></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-primary waves-effect" style="width: 100%" ng-click="addNew()">新球员</button></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-success waves-effect" style="width: 100%" ng-click="addAll()">启动计分</button></div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row clearfix" align="center">
-            <li><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">1</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-                <input type="text" ng-model="keywords"  class="form-control"/></div>
-                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect">删除</button>
-                    <button type="button" class="btn btn-default waves-effect">↑</button>
-                    <button type="button" class="btn btn-default waves-effect">↓</button> </div> </li>
-            <li><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">2</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6"><input type="text" ng-model="keywords"  class="form-control"/></div>
-                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect">删除</button>
-                    <button type="button" class="btn btn-default waves-effect">↑</button>
-                    <button type="button" class="btn btn-default waves-effect">↓</button> </div> </li>
-            <li><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">3</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6"><input type="text" ng-model="keywords"  class="form-control"/></div>
-                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect">删除</button>
-                    <button type="button" class="btn btn-default waves-effect">↑</button>
-                    <button type="button" class="btn btn-default waves-effect">↓</button> </div> </li>
-            <li><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">4</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6"><input type="text" ng-model="keywords"  class="form-control"/></div>
-                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect">删除</button>
-                    <button type="button" class="btn btn-default waves-effect">↑</button>
-                    <button type="button" class="btn btn-default waves-effect">↓</button> </div> </li>
+            <li ng-repeat="item in items"><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">1</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" ng-model="item.gamer"  class="form-control" /></div>
+                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect" ng-click="deleteGamer(item)">删除</button>
+                    <button type="button" class="btn btn-default waves-effect" ng-click="moveUp(item)">↑</button>
+                    <button type="button" class="btn btn-default waves-effect" ng-click="moveDown(item)">↓</button> </div> </li>
+            
         </div>
     </div>
     <div class="col-lg-12 row clearfix" align="center">
-        <button type="button" class="btn waves-effect" style="width: 95%">全部清空</button>
+        <button type="button" class="btn waves-effect" style="width: 95%" ng-click="deleteAll()">全部清空</button>
     </div>
 </div>
 <!-- / #wrapper -->
