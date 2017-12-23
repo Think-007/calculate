@@ -1,5 +1,5 @@
 body {
-    background-color: #fff;
+    background-color: #000;
 }
 
 a:hover{
@@ -68,7 +68,7 @@ a:hover{
 
 /*
  * login-1 (skin:blue)
- * PS:此处样式不能删除，他是另一种展示风格，因默认为login-2，所以暂时先注释掉，如需要时在把此段样式放开，然后把login-2样式屏蔽掉
+ * PS:姝ゅ鏍峰紡涓嶈兘鍒犻櫎锛屼粬鏄彟涓�绉嶅睍绀洪鏍硷紝鍥犻粯璁や负login-2锛屾墍浠ユ殏鏃跺厛娉ㄩ噴鎺夛紝濡傞渶瑕佹椂鍦ㄦ妸姝ゆ鏍峰紡鏀惧紑锛岀劧鍚庢妸login-2鏍峰紡灞忚斀鎺�
  */
 /*.login-head{
 	height:94px;
@@ -142,7 +142,7 @@ a:hover{
 }*/
 /*
  * login-2(skin:blue)
- * PS:默认为此样式风格.
+ * PS:榛樿涓烘鏍峰紡椋庢牸.
  * 
  */
 .login-head{

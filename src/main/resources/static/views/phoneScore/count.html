@@ -49,7 +49,7 @@
     <script src="../../../js/config/config_skin.js" type="text/javascript"></script>
     <script src="../../../js/App.js" type="text/javascript"></script>
     <!-- Home JS-->
-    <script src="../../../js/home.js" type="text/javascript"></script>
+    <script src="../../../js/phoneScore/count.js" type="text/javascript"></script>
     <style type="text/css">
         #leftMenu_navbar{
             width: 0;
@@ -65,7 +65,7 @@
         }
     </style>
 </head>
-<body ng-controller="app">
+<body ng-controller="countContrl">
 <div class="page-loader-wrapper" ng-include="'template/loading.html'"></div>
 <div class="overlay"></div>
 <!-- Page Loader -->
@@ -75,28 +75,25 @@
         <h2><button type="button" class="btn btn-warning waves-effect " disabled="disabled" style="width: 100%">FELT球道</button></h2>
         <div class="col-lg-12" style="margin: 50px">
             <div row clearfix>
-                <div><span style="margin: 10px"><img src="../../../images/0B133825.png "/></span><span style="line-height: 40px">姓名</span></div>
-                <div><span style="margin: 10px"><img src="../../../images/6F1CEEF8.png "/></span><span style="line-height: 40px">球道</span></div>
-                <div><span style="margin: 10px"><img src="../../../images/6759D49C.png "/></span><span style="line-height: 40px">球场名</span></div>
+                <div><span style="margin: 10px"><img src="../../../images/0B133825.png "/></span><span style="line-height: 40px">姓名:{{name}}</span></div>
+                <div><span style="margin: 10px"><img src="../../../images/6F1CEEF8.png "/></span><span style="line-height: 40px">球道:{{lane}}</span></div>
+                <div><span style="margin: 10px"><img src="../../../images/6759D49C.png "/></span><span style="line-height: 40px">球场名:{{fieldname}}</span></div>
             </div>
         </div>
 
 
         <div class="col-lg-12 row clearfix">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">1</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">2</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">3</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">4</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">5</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">6</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">7</button></div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%">8</button></div>
+        <div ng-repeat="i in score"> <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-ud"><button type="button" class="btn btn-info waves-effect" style="width: 100%" ng-click="clickNum(i)">{{i}}</button>
+            
+            </div></div>
+           
+
 
         </div>
         <div class="col-lg-12 row clearfix" >
-            <div class="form-group"><button type="button" class="btn btn-success waves-effect" style="width:100%">记分卡</button></div>
+            <div class="form-group"><button type="button" class="btn btn-success waves-effect" style="width:100%"><a href="table.html">记分卡</a></button></div>
 
-            <div class="form-group"> <button type="button" class="btn btn-default waves-effect" style="width:100%">返回</button></div>
+            <div class="form-group"> <button type="button" class="btn btn-default waves-effect" style="width:100%"><a href="table.html">返回</a></button></div>
         </div>
     </div>
 <!-- / #wrapper -->
