@@ -27,10 +27,15 @@ App.controller('tableContrl', function($scope, $ocLazyLoad,locals, translateTip)
 		}
 			tablerecord += "</tr>";
 	    }
+<<<<<<< HEAD
+=======
+		console.log(tablerecord);
+>>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 		$("#score").append(tablerecord);
 		
 		};
 		init();
+<<<<<<< HEAD
 	$scope.save=function(){
 		number=[];
 		var number=locals.setObject("newtableList",number);
@@ -39,4 +44,7 @@ App.controller('tableContrl', function($scope, $ocLazyLoad,locals, translateTip)
 		 locals.setObject("secondpos","");//字符串
 		alert("保存成功,测试版本请点击返回");
 	}
+=======
+	
+>>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 });

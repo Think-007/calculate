@@ -72,12 +72,17 @@
 
 <div id="wrapper">
     <h1 style="font-family: 'microsoft yahei'">球员</h1>
+<<<<<<< HEAD
     <div class="col-lg-12 col-xs-12 row clearfix">
+=======
+    <div class="col-lg-12 row clearfix">
+>>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-primary waves-effect" style="width: 100%" ng-click="addNew()">新球员</button></div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button type="button" class="btn btn-success waves-effect" style="width: 100%" ng-click="addAll()">启动计分</button></div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row clearfix" align="center">
+<<<<<<< HEAD
             <li ng-repeat="item in items">{{index}}
             <div class="form-group">
 			<div class="form-line">
@@ -90,6 +95,18 @@
     </div>
     <div class="col-lg-12 col-xs-12 " align="center" >
         <button type="button" class="btn btn-default waves-effect" style="width:100%;" ng-click="deleteAll()">全部清空</button>
+=======
+            <li ng-repeat="item in items"><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">1</div> <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" ng-model="item.gamer"  class="form-control" /></div>
+                <div class="col-lg-3"><button type="button" class="btn btn-danger waves-effect" ng-click="deleteGamer(item)">删除</button>
+                    <button type="button" class="btn btn-default waves-effect" ng-click="moveUp(item)">↑</button>
+                    <button type="button" class="btn btn-default waves-effect" ng-click="moveDown(item)">↓</button> </div> </li>
+            
+        </div>
+    </div>
+    <div class="col-lg-12 row clearfix" align="center">
+        <button type="button" class="btn waves-effect" style="width: 95%" ng-click="deleteAll()">全部清空</button>
+>>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
     </div>
 </div>
 <!-- / #wrapper -->
