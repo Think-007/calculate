@@ -29,7 +29,7 @@
 	transition: left 0.35s;
 	-webkit-transition: left 0.35s;
 	-moz-user-select: none;
-	-webkit-user-select: none;
+
 }
 .toggle.off .toggle-group {
 	left: -100%;

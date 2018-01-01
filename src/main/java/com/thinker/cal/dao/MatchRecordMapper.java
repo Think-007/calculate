@@ -12,6 +12,7 @@ package com.thinker.cal.dao;
 import java.util.List;
 
 import com.thinker.cal.domain.MatchRecord;
+import com.thinker.cal.domain.UserRecord;
 
 /**
  * 
@@ -50,4 +51,12 @@ public interface MatchRecordMapper {
 	 * @return
 	 */
 	public MatchRecord queryMatchRecordByRecordId(String recordId);
+	
+	
+	/**
+	 * 存儲最後的比賽記錄
+	 * @param userRecord
+	 * @return
+	 */
+	public int insertUserRecord(UserRecord userRecord);
 }

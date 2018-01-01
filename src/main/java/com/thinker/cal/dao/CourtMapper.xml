@@ -28,7 +28,7 @@
 			owner as owner,
 			tel_number as telNumber,
 			email as email
-		from  mg_court order by =city desc
+		from  mg_court order by city desc
 		
 	</select>
 

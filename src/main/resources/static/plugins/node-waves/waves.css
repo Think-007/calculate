@@ -11,7 +11,7 @@
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
-  -webkit-user-select: none;
+
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;

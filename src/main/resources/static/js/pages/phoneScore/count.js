@@ -36,6 +36,7 @@ var newCount="";
 	            lanei=object.lane;
 	            name=object.gamer;
 	            gamerlist=object.gamerlist;
+	            console.log(gamerlist,object);
 	            newCount=object;
 	            init="?gamerlist="+gamerlist;
 	　　　　　　}
@@ -45,16 +46,11 @@ var newCount="";
 	}  
 	
 App.controller('countContrl', function($scope, $ocLazyLoad,locals, translateTip){
-	 console.log(locals.getObject("newtableList"));
+	  console.log(locals.getObject("newtableList"));
 	GetRequest();
 	console.log(newCount);
 	$scope.fieldname="asdksjlsf";
-	 
-	 $scope.ListController=function(){
-	 
 	$scope.score= [1,2,3,4,5,6,7,8];
-	 }
-	
 	$scope.clickNum = function(i){
 	newCount["score"]=i;
 	newCount["init"]="init";
@@ -82,7 +78,7 @@ App.controller('countContrl', function($scope, $ocLazyLoad,locals, translateTip)
 	window.location.href = "result.html?lane="+lanei;//关闭窗口
 	  locals.setObject("count", newtableList);//字符串
 	  locals.setObject("lane",newCount);
-    console.log(newtableList,newCount);
+console.log(newtableList,newCount);
 	}
 	
 	$scope.lane=lanei;

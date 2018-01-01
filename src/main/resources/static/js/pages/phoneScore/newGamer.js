@@ -6,23 +6,14 @@ App.controller('newGamerCtrl', function($scope, $ocLazyLoad,locals, translateTip
 	
 	window.location.href = "result.html?gamer="+i;//关闭窗口
 	}
-	var namelist=locals.getObject("secondpos");//字符串
+	
 	 $scope.items=[{
-		  gamer:'new'
+		  gamer:'admin'
 	 }];
-	if(namelist!=""){
-		 $scope.items=namelist;
-	}else{
-		 $scope.items=[{
-			  gamer:'new'
-		 }];
-	}
-	
-	
+	 
 	 
 	 //增加
 	 $scope.addNew=function(){
-	
 	  $scope.items.push({
 	  gamer:''
 	  });

@@ -32,67 +32,55 @@ App.controller('resultCtrl', function($scope,$location,locals, $ocLazyLoad, tran
 	$scope.count={};
 	GetRequest();
 	var namelist=locals.getObject("secondpos");//字符串
-console.log(namelist);
-	$scope.lane=newTimeGamer.lane||1;
+
+	$scope.lane=newTimeGamer.lane||1;1
 	$scope.chengjiScore="";
 	//计分回传
-	
+	var countBack=locals.getObject("count");
 
+	var countarr={"lane":countBack.lane,"score":countBack.score}
 
 var newArr=[];
 var gamearr=[];
 
-
+for(var j=0;j<$scope.laneList.length;j++){
+	var gameobk=[];
+	gameobk.lane=$scope.laneList[j];
+	gameobk.score=0;
+	
+	gamearr.push(gameobk);
+	
+}
 
      for (var i=0; i<namelist.length;i++){ 	
-    	var newObj={"name":"","score":""};
+    	var newObj={"name":"","game":{"lane":"","score":""}};
     	newObj.name=namelist[i];
-    	newObj.score=0;	
+    	newObj.game=gamearr;	
+    	
         newArr.push(newObj);   	 	
      }
       
-     for(var j=0;j<$scope.laneList.length;j++){
-    		var gameobk={};
-    		gameobk.lane=$scope.laneList[j];
-    		gameobk.gameVal=newArr;
-    		
-    		gamearr.push(gameobk);
-    		
-    	}
+
      
 
 	$scope.list=[];
 	$scope.datalist={};
-	var countBack=locals.getObject("count");
-	var laneBack=locals.getObject("lane");
 	
-	$scope.getDataList=function(){	
-		$scope.dataTable=gamearr;
+	$scope.getDataList=function(){
 		
-		if(countBack!=""){
-			$scope.dataTable=countBack;
-		}else{
-			$scope.dataTable=gamearr;
-		}	
-		locals.setObject("newtableList",$scope.dataTable);//字符串
-	    console.log($scope.dataTable,countBack,gamearr);
-						
-	for(var i in $scope.dataTable){
-		if($scope.dataTable[i].lane==$scope.lane){
-			$scope.list=$scope.dataTable[i].gameVal;
+    $scope.datalist=newArr;
+   
+    for(var i in $scope.datalist){
+    	for(var j in $scope.datalist.game){
+    		$scope.gamescore=$scope.datalist[i].game[j].score;
+    	}
+    }
+    
+	console.log(countarr);
 	
-		for(var j in $scope.list){
-			
-			if($scope.list[j].score!=0){
-				$scope.scoreShow=true;
-				}else{$scope.scoreShow=false;
-					}
-		}
-		
+	console.log($scope.datalist[0].game[0],$scope.datalist[2].game[0]);
 	}
-  
-	}
-	}
+	
 	$scope.pre=function(lane){
 		
 		if(lane>1){
@@ -123,14 +111,9 @@ $scope.lanebtn=function(){
 	
 	$scope.chengji=function(gamer,lane)
 	{
-		
-		 console.log(locals.getObject("newtableList"));
+		console.log($scope.chengjiScore);
+
 			window.location.href = "count.html?lane="+lane+"&gamer="+gamer;//关闭窗口
 		
-	}
-	$scope.clearAll=function(){
-			 locals.setObject("count","");//字符串
-		 locals.setObject("lane",[]);
-		 window.location.reload(); 
 	}
 });

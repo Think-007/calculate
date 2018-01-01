@@ -24,15 +24,28 @@ App.controller('laneCtrl', function($scope, $ocLazyLoad, translateTip, $http){
 	GetRequest();
 	
 	$scope.lane= [];
-	var arr={};
+	
 	$scope.clickLane = function(i){
 	
 	window.location.href = "result.html?lane="+i;//关闭窗口
 	}
 	
 	$scope.ListController=function(){
-		$scope.lane= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-	}
-	
+		  $http.get("../../js/fakedata/lane.json")
+		   .success(function(data){
+			   var arr=data.lane;
+			   var result=[];
+			   for(var i=0;i<arr.length;i++){
+			      
+			       result.push(arr[i].id);
+			   }
+			   console.log(result);
+		    $scope.lane=result;
+
+		   })
+		   .error(function(){
+			   console.log("error");
+		   });
+		 };
 	
 });

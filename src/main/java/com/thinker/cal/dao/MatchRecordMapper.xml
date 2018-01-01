@@ -62,6 +62,23 @@
 			
 		
 	</select>
+	
+	<insert id="insertUserRecord" parameterType="UserRecord">
+	
+		insert into mg_user_record(
+		recordid,
+		userid,
+		recordinfo,
+		createtime
+		)
+		values (
+		#{recordId},
+		#{userId},
+		#{recordInfo},
+		#{createTime}
+		)
+	
+	</insert>
 
 
 	<!-- <select id="queryComissionCountAndSum" resultType="java.util.Map"> 
