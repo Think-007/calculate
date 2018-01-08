@@ -6,7 +6,6 @@ App.controller('newGamerCtrl', function($scope, $ocLazyLoad,locals, translateTip
 	
 	window.location.href = "result.html?gamer="+i;//关闭窗口
 	}
-<<<<<<< HEAD
 	var namelist=locals.getObject("secondpos");//字符串
 	 $scope.items=[{
 		  gamer:'new'
@@ -24,16 +23,6 @@ App.controller('newGamerCtrl', function($scope, $ocLazyLoad,locals, translateTip
 	 //增加
 	 $scope.addNew=function(){
 	
-=======
-	
-	 $scope.items=[{
-		  gamer:'admin'
-	 }];
-	 
-	 
-	 //增加
-	 $scope.addNew=function(){
->>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 	  $scope.items.push({
 	  gamer:''
 	  });

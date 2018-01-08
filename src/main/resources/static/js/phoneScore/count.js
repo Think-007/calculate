@@ -36,10 +36,6 @@ var newCount="";
 	            lanei=object.lane;
 	            name=object.gamer;
 	            gamerlist=object.gamerlist;
-<<<<<<< HEAD
-=======
-	            console.log(gamerlist,object);
->>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 	            newCount=object;
 	            init="?gamerlist="+gamerlist;
 	　　　　　　}
@@ -49,7 +45,6 @@ var newCount="";
 	}  
 	
 App.controller('countContrl', function($scope, $ocLazyLoad,locals, translateTip){
-<<<<<<< HEAD
 	 console.log(locals.getObject("newtableList"));
 	GetRequest();
 	console.log(newCount);
@@ -60,13 +55,6 @@ App.controller('countContrl', function($scope, $ocLazyLoad,locals, translateTip)
 	$scope.score= [1,2,3,4,5,6,7,8];
 	 }
 	
-=======
-	  console.log(locals.getObject("newtableList"));
-	GetRequest();
-	console.log(newCount);
-	$scope.fieldname="asdksjlsf";
-	$scope.score= [1,2,3,4,5,6,7,8];
->>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 	$scope.clickNum = function(i){
 	newCount["score"]=i;
 	newCount["init"]="init";
@@ -94,11 +82,7 @@ App.controller('countContrl', function($scope, $ocLazyLoad,locals, translateTip)
 	window.location.href = "result.html?lane="+lanei;//关闭窗口
 	  locals.setObject("count", newtableList);//字符串
 	  locals.setObject("lane",newCount);
-<<<<<<< HEAD
     console.log(newtableList,newCount);
-=======
-console.log(newtableList,newCount);
->>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 	}
 	
 	$scope.lane=lanei;

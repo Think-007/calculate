@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
 App.controller('tableContrl', function($scope, $ocLazyLoad,locals, translateTip){
 	
 	var number=locals.getObject("newtableList");
@@ -40,20 +39,4 @@ App.controller('tableContrl', function($scope, $ocLazyLoad,locals, translateTip)
 		 locals.setObject("secondpos","");//字符串
 		alert("保存成功,测试版本请点击返回");
 	}
-=======
-App.controller('finishContrl', function($scope, $ocLazyLoad,locals, translateTip){
-	 console.log(locals.getObject("newtableList"));
-	 var newtableList=locals.getObject("newtableList");
-	$scope.fieldname="asdksjlsf";
-	$scope.list="";
-	$scope.dataShow = function(){
-
-		$scope.list=locals.getObject("newtableList");
-		 console.log($scope.list);
-	for(var i in $scope.list){
-		$scope.namelist=$scope.list[i].gameVal.name;
-	}
-	}
-	
->>>>>>> df808107c43d42d40005fba1c0f760fa279b08fa
 });
